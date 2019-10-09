@@ -1,4 +1,4 @@
-package com.codegym.repositories.impl;
+package com.codegym.repositories;
 
 import java.util.List;
 
