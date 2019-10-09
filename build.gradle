@@ -44,7 +44,7 @@ dependencies {
     // REST WEB SERVICE
 
     compile group: 'org.springframework', name: 'spring-tx', version: '4.3.17.RELEASE'
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.5.3'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.5.3' // JSON
 
 
 }
