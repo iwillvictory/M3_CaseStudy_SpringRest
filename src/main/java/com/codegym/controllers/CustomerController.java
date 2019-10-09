@@ -69,6 +69,18 @@ public class CustomerController {
 
 
     //////////DELETE CUSTOMER //////////////
+    @RequestMapping(value = "/customers/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Customer> deleteCustomer(@PathVariable("id") long id) {
+        System.out.println("Fetching & Deleting Customer with id " + id);
 
+        Customer customer = customerService.findById(id);
+        if (customer == null) {
+            System.out.println("Unable to delete. Customer with id " + id + " not found");
+            return new ResponseEntity<Customer>(HttpStatus.NOT_FOUND);
+        }
+
+        customerService.remove(id);
+        return new ResponseEntity<Customer>(HttpStatus.NO_CONTENT);
+    }
 
 }
