@@ -1,5 +1,9 @@
 package com.codegym;
 
+import com.codegym.repositories.CustomerRepository;
+import com.codegym.repositories.impl.CustomerRepositoryImpl;
+import com.codegym.services.CustomerService;
+import com.codegym.services.impl.CustomerServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -117,15 +121,15 @@ public class AppConfiguration extends WebMvcConfigurerAdapter implements Applica
 	}
 
 
-
-   /* @Bean
+    // Addition Beans of Application
+   @Bean
     public CustomerRepository customerRepository(){
         return new CustomerRepositoryImpl();
     }
 
     @Bean
     public CustomerService customerService(){
-        return new CustomerServiecImpl();
-    }*/
+        return new CustomerServiceImpl();
+    }
 
 }
