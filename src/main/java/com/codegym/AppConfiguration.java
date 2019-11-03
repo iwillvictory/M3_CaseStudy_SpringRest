@@ -3,7 +3,11 @@ package com.codegym;
 import com.codegym.repositories.CustomerRepository;
 import com.codegym.repositories.impl.CustomerRepositoryImpl;
 import com.codegym.services.CustomerService;
+import com.codegym.services.DepartmentService;
+import com.codegym.services.EmployeeService;
 import com.codegym.services.impl.CustomerServiceImpl;
+import com.codegym.services.impl.DepartmentServiceImpl;
+import com.codegym.services.impl.EmployeeServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,6 +19,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -44,6 +49,7 @@ import java.util.Properties;
 @EnableWebMvc
 @EnableTransactionManagement
 @EnableJpaRepositories("com.codegym.repositories")
+
 public class AppConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
 
@@ -131,5 +137,12 @@ public class AppConfiguration extends WebMvcConfigurerAdapter implements Applica
     public CustomerService customerService(){
         return new CustomerServiceImpl();
     }
+
+    @Bean
+    public EmployeeService employeeService() {return new EmployeeServiceImpl();}
+
+    @Bean
+    public DepartmentService departmentService(){return new DepartmentServiceImpl();}
+
 
 }
