@@ -11,6 +11,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 public class DepartmentController {
     @Autowired
@@ -41,21 +42,20 @@ public class DepartmentController {
     ////////// CREATE OR UPDATE CUSTOMER///////
     @RequestMapping(value="/departments/", method = RequestMethod.POST)
     public ResponseEntity<Void> createDepartment(@RequestBody Department department, UriComponentsBuilder uriBuilder){
-        System.out.println("Create a new Department");
+        System.out.println("Create a new Department" + department.getDepartmentName());
         departmentService.save(department);
-        HttpHeaders httpHeaders= new HttpHeaders();
-        httpHeaders.setLocation(uriBuilder.path("/departments/").buildAndExpand().toUri());
-        return new ResponseEntity<>(httpHeaders,HttpStatus.CREATED);
+       // HttpHeaders httpHeaders= new HttpHeaders();
+       // httpHeaders.setLocation(uriBuilder.path("/departments/").buildAndExpand().toUri());
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/departments/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Department> updateDepartment(@PathVariable("id") Integer id, @RequestBody Department department) {
-        System.out.println("Updating Department " + id);
+    @RequestMapping(value = "/departments/", method = RequestMethod.PUT)
+    public ResponseEntity<Department> updateDepartment( @RequestBody Department department) {
 
-        Department currentDepartment = departmentService.findById(id);
+        Department currentDepartment = departmentService.findById(department.getDepartmentId());
 
         if (currentDepartment == null) {
-            System.out.println("Department with id " + id + " not found");
+            System.out.println("Department not found");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 

@@ -1,28 +1,25 @@
 package com.codegym.models;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+public class EmployeeForm {
+
     private int employeeId;
     private String employeeName;
     private String mail;
     private Date joinDate;
-    @ManyToOne
-    @JoinColumn(name = "departmentId")
-    private Department department;
 
-    public Employee(String employeeName, String mail, Date joinDate, Department department) {
+    private int department;
+
+    public EmployeeForm(String employeeName, String mail, Date joinDate,int department) {
         this.employeeName = employeeName;
         this.mail = mail;
         this.joinDate = joinDate;
         this.department = department;
     }
 
-    public Employee() {
+    public EmployeeForm() {
     }
 
     public int getEmployeeId() {
@@ -57,11 +54,11 @@ public class Employee {
         this.joinDate = joinDate;
     }
 
-    public Department getDepartment() {
+    public int getDepartment() {
         return department;
     }
 
-    public void setDepartment(Department department) {
+    public void setDepartment(int department) {
         this.department = department;
     }
 
